@@ -1,0 +1,35 @@
+{% extends 'service/base.html' %}
+
+{% block content %}
+<div class="col-12">
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    {% if object %}
+                    редактирование клиента
+                    {% else %}
+                    создание клиента
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-outline-success">
+                            {% if object %}
+                            сохранить
+                            {% else %}
+                            добавить
+                            {% endif %}
+                        </button>
+                        <a class="btn btn-outline-warning"
+                           href="{% url 'service:client' %}">Отмена</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

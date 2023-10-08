@@ -1,0 +1,702 @@
+[
+{
+  "model": "service.message",
+  "pk": 1,
+  "fields": {
+    "title": "Hello!",
+    "text": "Hello World!!"
+  }
+},
+{
+  "model": "service.message",
+  "pk": 2,
+  "fields": {
+    "title": "Привет!",
+    "text": "Как дела?"
+  }
+},
+{
+  "model": "service.message",
+  "pk": 3,
+  "fields": {
+    "title": "Это я",
+    "text": "Привет! Как дела"
+  }
+},
+{
+  "model": "service.client",
+  "pk": 7,
+  "fields": {
+    "name": "Albert",
+    "email": "albert.minnibaeff@yandex.ru",
+    "comment": "Hello!"
+  }
+},
+{
+  "model": "service.client",
+  "pk": 8,
+  "fields": {
+    "name": "Olga",
+    "email": "albina1912@yandex.ru",
+    "comment": "Hello!"
+  }
+},
+{
+  "model": "service.client",
+  "pk": 9,
+  "fields": {
+    "name": "Nikita",
+    "email": "fsdfs@sfsdfsf.ru",
+    "comment": "Hello!"
+  }
+},
+{
+  "model": "service.mailing",
+  "pk": 48,
+  "fields": {
+    "time": "20:30:00",
+    "frequency": "раз в день",
+    "status": "создана",
+    "message": 1,
+    "client": [
+      7
+    ]
+  }
+},
+{
+  "model": "service.mailing",
+  "pk": 85,
+  "fields": {
+    "time": "00:55:00",
+    "frequency": "раз в день",
+    "status": "создана",
+    "message": 2,
+    "client": [
+      7
+    ]
+  }
+},
+{
+  "model": "service.mailing",
+  "pk": 86,
+  "fields": {
+    "time": "23:44:00",
+    "frequency": "раз в день",
+    "status": "создана",
+    "message": 3,
+    "client": [
+      7
+    ]
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 99,
+  "fields": {
+    "data_time": "2023-09-27T00:42:20.604Z",
+    "status": "Неуспешно",
+    "answer": null,
+    "message": 1
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 100,
+  "fields": {
+    "data_time": "2023-09-27T00:42:20.948Z",
+    "status": "Неуспешно",
+    "answer": null,
+    "message": 2
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 101,
+  "fields": {
+    "data_time": "2023-09-27T00:42:21.334Z",
+    "status": "Неуспешно",
+    "answer": null,
+    "message": 2
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 102,
+  "fields": {
+    "data_time": "2023-09-27T00:42:21.676Z",
+    "status": "Неуспешно",
+    "answer": null,
+    "message": 2
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 103,
+  "fields": {
+    "data_time": "2023-09-27T00:42:45.062Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 1
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 104,
+  "fields": {
+    "data_time": "2023-09-27T00:42:45.695Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 2
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 105,
+  "fields": {
+    "data_time": "2023-09-27T00:42:46.194Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 2
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 106,
+  "fields": {
+    "data_time": "2023-09-27T00:42:46.963Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 2
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 107,
+  "fields": {
+    "data_time": "2023-09-27T00:50:01.568Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 108,
+  "fields": {
+    "data_time": "2023-09-27T00:50:02.168Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 109,
+  "fields": {
+    "data_time": "2023-09-27T01:03:01.963Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 1
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 110,
+  "fields": {
+    "data_time": "2023-09-27T01:04:00.649Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 1
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 111,
+  "fields": {
+    "data_time": "2023-09-27T01:05:00.568Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 1
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 112,
+  "fields": {
+    "data_time": "2023-09-27T01:05:00.767Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 2
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 113,
+  "fields": {
+    "data_time": "2023-09-27T01:06:00.601Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 1
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 114,
+  "fields": {
+    "data_time": "2023-09-27T01:06:00.633Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 2
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 115,
+  "fields": {
+    "data_time": "2023-09-27T01:55:01.837Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 2
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 116,
+  "fields": {
+    "data_time": "2023-09-27T01:56:00.538Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 2
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 117,
+  "fields": {
+    "data_time": "2023-09-27T02:02:43.298Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 2
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 118,
+  "fields": {
+    "data_time": "2023-09-27T02:02:44.206Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 1
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 119,
+  "fields": {
+    "data_time": "2023-10-07T23:10:02.102Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 2
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 120,
+  "fields": {
+    "data_time": "2023-10-07T23:10:02.040Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 1
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 121,
+  "fields": {
+    "data_time": "2023-10-07T23:10:03.138Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 1
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 122,
+  "fields": {
+    "data_time": "2023-10-07T23:10:03.386Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 2
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 123,
+  "fields": {
+    "data_time": "2023-10-07T23:44:01.660Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 124,
+  "fields": {
+    "data_time": "2023-10-07T23:45:00.635Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 125,
+  "fields": {
+    "data_time": "2023-10-07T23:46:00.715Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 126,
+  "fields": {
+    "data_time": "2023-10-07T23:47:00.570Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 127,
+  "fields": {
+    "data_time": "2023-10-07T23:48:00.550Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 128,
+  "fields": {
+    "data_time": "2023-10-07T23:49:00.721Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 129,
+  "fields": {
+    "data_time": "2023-10-07T23:50:00.726Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 130,
+  "fields": {
+    "data_time": "2023-10-07T23:51:00.595Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 131,
+  "fields": {
+    "data_time": "2023-10-07T23:52:00.684Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 132,
+  "fields": {
+    "data_time": "2023-10-07T23:53:00.547Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 133,
+  "fields": {
+    "data_time": "2023-10-07T23:54:00.540Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 134,
+  "fields": {
+    "data_time": "2023-10-07T23:55:00.645Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 135,
+  "fields": {
+    "data_time": "2023-10-07T23:56:00.723Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 136,
+  "fields": {
+    "data_time": "2023-10-07T23:57:00.688Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 137,
+  "fields": {
+    "data_time": "2023-10-07T23:58:00.818Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 138,
+  "fields": {
+    "data_time": "2023-10-07T23:59:00.584Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 139,
+  "fields": {
+    "data_time": "2023-10-08T00:00:00.656Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 140,
+  "fields": {
+    "data_time": "2023-10-08T00:01:00.630Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 141,
+  "fields": {
+    "data_time": "2023-10-08T00:02:00.587Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 142,
+  "fields": {
+    "data_time": "2023-10-08T00:03:00.655Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 143,
+  "fields": {
+    "data_time": "2023-10-08T00:04:00.530Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 144,
+  "fields": {
+    "data_time": "2023-10-08T00:05:00.639Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 145,
+  "fields": {
+    "data_time": "2023-10-08T00:06:00.600Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 146,
+  "fields": {
+    "data_time": "2023-10-08T00:07:00.511Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 147,
+  "fields": {
+    "data_time": "2023-10-08T00:08:00.607Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 148,
+  "fields": {
+    "data_time": "2023-10-08T00:09:00.610Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 149,
+  "fields": {
+    "data_time": "2023-10-08T00:10:00.608Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 150,
+  "fields": {
+    "data_time": "2023-10-08T00:11:00.513Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 151,
+  "fields": {
+    "data_time": "2023-10-08T00:12:00.579Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 152,
+  "fields": {
+    "data_time": "2023-10-08T00:13:00.766Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 153,
+  "fields": {
+    "data_time": "2023-10-08T00:14:00.715Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 154,
+  "fields": {
+    "data_time": "2023-10-08T00:15:00.518Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 155,
+  "fields": {
+    "data_time": "2023-10-08T00:16:00.552Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 156,
+  "fields": {
+    "data_time": "2023-10-08T00:17:00.578Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 157,
+  "fields": {
+    "data_time": "2023-10-08T00:18:00.647Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 158,
+  "fields": {
+    "data_time": "2023-10-08T00:19:00.533Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+},
+{
+  "model": "service.logs",
+  "pk": 159,
+  "fields": {
+    "data_time": "2023-10-08T00:20:00.548Z",
+    "status": "Успешно",
+    "answer": null,
+    "message": 3
+  }
+}
+]

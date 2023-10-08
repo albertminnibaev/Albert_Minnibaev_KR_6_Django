@@ -1,0 +1,9 @@
+{% extends 'service/base.html' %}
+
+{% block content %}
+<div class="row">
+    {% for object in object_list %}
+        {% include 'service/includes/inc_service.html' %}
+    {% endfor %}
+</div>
+{% endblock %}

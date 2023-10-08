@@ -1,0 +1,30 @@
+{% extends 'service/base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-12 mb-5">
+        <a href="{% url 'service:mailing_create' %}" class="btn btn-primary">добавить рассылку</a>
+    </div>
+    {% for object in object_list %}
+    <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+            <div class="card-body">
+                <p class="card-text">{{ object.time | title }}</p>
+                <p class="card-text">{{ object.frequency | slice:":100" }}</p>
+                <p class="card-text">{{ object.status }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-groop">
+                        <a href="{% url 'service:mailing_update' object.pk %}"
+                           class="btn btn-sm btn-outline-warning">редактирование</a>
+                        <a href="{% url 'service:mailing_edit' object.pk %}"
+                           class="btn btn-sm btn-outline-success">просмотр</a>
+                        <a href="{% url 'service:mailing_delete' object.pk %}"
+                           class="btn btn-sm btn-outline-danger">удаление</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
