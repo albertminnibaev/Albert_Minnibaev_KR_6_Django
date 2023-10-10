@@ -1,13 +1,13 @@
 import random
 
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.views import LoginView as BaseLoginView
 from django.contrib.auth.views import LogoutView as BaseLogoutView
 from django.core.mail import send_mail
-from django.shortcuts import render
-from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy, reverse
+from django.views.generic import CreateView, UpdateView, ListView
 
 from config import settings
 from users.forms import UserRegisterForm, UserForm
@@ -35,7 +35,7 @@ class RegisterView(CreateView):
         self.object = form.save()
         new_password = ''.join([str(random.randint(0, 9)) for _ in range(10)])
         self.object.verification = new_password
-        self.object.is_active = False
+        #self.object.is_active = False
         self.object.save()
         send_mail(
             subject='Поздравляем с регистрацией',
@@ -54,6 +54,15 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+
+class UserListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+    model = User
+    permission_required = 'users.view_user'
+    extra_context = {
+        'title': 'Список пользователей'
+    }
+
 
 @login_required
 def generate_new_password(request):
@@ -84,3 +93,15 @@ def verification_user(request):
 
 def verification_user_1(request):
     return render(request, 'users/verification_1.html')
+
+
+def toggle_activity(request, pk):
+    user_item = get_object_or_404(User, pk=pk)
+    if user_item.is_active:
+        user_item.is_active = False
+    else:
+        user_item.is_active = True
+
+    user_item.save()
+
+    return redirect(reverse('users:user'))

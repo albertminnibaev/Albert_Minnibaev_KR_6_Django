@@ -28,7 +28,8 @@ load_dotenv(BASE_DIR / '.env')
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-83*rowk46#&f$+@$9dieo=j4*qz_vk6d***l)d=e((7-4@!z0g'
+#SECRET_KEY = 'django-insecure-83*rowk46#&f$+@$9dieo=j4*qz_vk6d***l)d=e((7-4@!z0g'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     'service',
     'django_apscheduler',
     'users',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -164,3 +166,12 @@ AUTH_USER_MODEL = 'users.User'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/users/'
+
+# Настройки кеширования
+CACHE_ENABLED = os.getenv('CACHE_ENABLED') == '1'
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": os.getenv('CACHE_LOCATION'),
+    }
+}

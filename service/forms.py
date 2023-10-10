@@ -19,6 +19,13 @@ class ClientForm(StyleFromMixin, forms.ModelForm):
 
 class MailingForm(StyleFromMixin, forms.ModelForm):
 
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None) # Извлекаем пользователя из аргументов
+        super(MailingForm, self).__init__(*args, **kwargs)
+
+        # Ограничиваем queryset для выбора клиентов только теми, которых создал текущий пользователь
+        self.fields['client'].queryset = Client.objects.filter(creator=user)
+
     class Meta:
         model = Mailing
         exclude = ('creator',)
