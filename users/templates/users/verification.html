@@ -1,0 +1,18 @@
+{% extends 'service/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <div class="card">
+            <div class="card-header">
+                <H5><center>Поздравляем вы успешно зарегистрировались!</H5>
+            </div>
+            <div class="card-body">
+             <center><a class="btn btn-outline-success" href="{% url 'users:login' %}">Перейти на страничку для входа</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

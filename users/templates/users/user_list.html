@@ -1,0 +1,34 @@
+{% extends 'service/base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    {% for object in object_list %}
+    <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+            <div class="card-body">
+                <p class="card-text">Почта: {{ object.email }}</p>
+                <p class="card-text">Имя: {{ object.first_name | title }}</p>
+                <p class="card-text">Фамилия: {{ object.last_name | title }}</p>
+                <p class="card-text">номер телефона: {{ object.phone }}</p>
+                <p class="card-text">статус: {{ object.is_active }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-groop">
+                         {% if user.is_staff and not user == object %}
+                             {% if not object.is_superuser %}
+                                 {% if object.is_active %}
+                                     <a href="{% url 'users:toggle_activity' object.pk %}"
+                                        class="btn btn-sm btn-outline-warning">Установить статус "неактивный"</a>
+                                 {% else %}
+                                     <a href="{% url 'users:toggle_activity' object.pk %}"
+                                        class="btn btn-sm btn-outline-success">Установить статус "активный"</a>
+                                {% endif %}
+                             {% endif %}
+                         {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

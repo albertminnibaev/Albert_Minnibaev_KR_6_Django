@@ -1,0 +1,55 @@
+{% extends 'service/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="col-12">
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        Информация о статье {{ object.title }}
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <td>заголовок</td>
+                            <td>{{ object.title }}</td>
+                        </tr>
+                        <tr>
+                            <td>содержание</td>
+                            <td>{{ object.content }}</td>
+                        </tr>
+                        <tr>
+                            <td>изображение</td>
+                            <td>{{ object.preview }}</td>
+                        </tr>
+                        <tr>
+                            <td>количество просмотров</td>
+                            <td>{{ object.quantity }}</td>
+                        </tr>
+                        <tr>
+                            <td>дата создания</td>
+                            <td>{{ object.created_at }}</td>
+                        </tr>
+                        <tr>
+                            <td>признак публикации</td>
+                            <td>{{ object.sign }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <p>
+                        {{ object.body }}
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'blog:article' %}" class="btn btn-sm btn-outline-success">назад</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

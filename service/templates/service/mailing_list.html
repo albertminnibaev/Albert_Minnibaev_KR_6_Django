@@ -1,0 +1,49 @@
+{% extends 'service/base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-12 mb-5">
+        {% if not user.is_staff or user.is_superuser %}
+        <a href="{% url 'service:mailing_create' %}" class="btn btn-primary">добавить рассылку</a>
+        {% endif %}
+    </div>
+    {% for object in object_list %}
+    <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+            <div class="card-body">
+                <p class="card-text">Время рассылки: {{ object.time | title }}</p>
+                <p class="card-text">Периодичность: {{ object.frequency | slice:":100" }}</p>
+                <p class="card-text">Статус: {{ object.status }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-groop">
+                        {% if not user.is_staff or user.is_superuser %}
+                        <a href="{% url 'service:mailing_update' object.pk %}"
+                           class="btn btn-sm btn-outline-warning">редактирование</a>
+                        {% endif %}
+                        <a href="{% url 'service:mailing_edit' object.pk %}"
+                           class="btn btn-sm btn-outline-success">просмотр</a>
+                        {% if not user.is_staff or user.is_superuser %}
+                        <a href="{% url 'service:mailing_delete' object.pk %}"
+                           class="btn btn-sm btn-outline-danger">удаление</a>
+                        {% endif %}
+                    </div>
+                </div><br>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-groop">
+                         {% if not user.is_staff or user.is_superuser %}
+                         {% if object.status == 'создана' %}
+                         <a href="{% url 'service:toggle_activity' object.pk %}"
+                           class="btn btn-sm btn-outline-warning">Установить статус "завершена"</a>
+                         {% else %}
+                         <a href="{% url 'service:toggle_activity' object.pk %}"
+                           class="btn btn-sm btn-outline-success">Установить статус "создана"</a>
+                         {% endif %}
+                         {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

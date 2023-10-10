@@ -1,0 +1,28 @@
+{% extends 'service/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 mb-5">
+        <a href="{% url 'service:client_create' %}" class="btn btn-primary">добавить клиента</a>
+    </div>
+    {% for object in object_list %}
+    <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+            <div class="card-body">
+                <p class="card-text">{{ object.name | title }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-groop">
+                        <a href="{% url 'service:client_update' object.pk %}"
+                           class="btn btn-sm btn-outline-warning">редактирование</a>
+                        <a href="{% url 'service:client_edit' object.pk %}"
+                           class="btn btn-sm btn-outline-success">просмотр</a>
+                        <a href="{% url 'service:client_delete' object.pk %}"
+                           class="btn btn-sm btn-outline-danger">удаление</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

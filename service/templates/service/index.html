@@ -1,0 +1,37 @@
+{% extends 'service/base.html' %}
+
+{% block content %}
+<div class="row">
+    {% for object in object_list %}
+    {% include 'service/includes/inc_service.html' %}
+    {% endfor %}
+    <div class="col-12">
+        <p>
+        <center><H4>Колличество рассылок: {{ count_mailing }}</H4></center>
+        </p>
+        <p>
+        <center><H4>Количество активных рассылок: {{ count_activ_mailing }}</H4></center>
+        </p>
+        <p>
+        <center><H4>Количество уникальных клиентов для рассылок: {{ count_client }}</H4></center>
+        </p>
+    </div>
+    {% for object in random_article %}
+    <div class="col-md-4">
+        <div class="card mb-4 box-shadow">
+            <div class="card-body">
+                <p class="card-text">заголовок: {{ object.title | title }}</p>
+                <p class="card-text">содержание: {{ object.content | slice:":100" }}</p>
+                <p class="card-text">количество просмотров: {{ object.quantity }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-groop">
+                        <a href="{% url 'blog:article_edit' object.pk %}"
+                           class="btn btn-sm btn-outline-success">просмотр</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
