@@ -11,7 +11,7 @@ from service.views import IndexView, ClientListView, MailingListView, MailingCre
 app_name = ServiceConfig.name
 
 urlpatterns = [
-    path('', cache_page(30)(IndexView.as_view()), name='index'),
+    path('', IndexView.as_view(), name='index'),
     path('clients/', ClientListView.as_view(), name='client'),
     path('clients/create/', ClientCreateView.as_view(), name='client_create'),
     path('clients/update/<int:pk>/', ClientUpdateView.as_view(), name='client_update'),
