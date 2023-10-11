@@ -35,7 +35,7 @@ class RegisterView(CreateView):
         self.object = form.save()
         new_password = ''.join([str(random.randint(0, 9)) for _ in range(10)])
         self.object.verification = new_password
-        #self.object.is_active = False
+        self.object.is_active = False
         self.object.save()
         send_mail(
             subject='Поздравляем с регистрацией',
@@ -64,7 +64,6 @@ class UserListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     }
 
 
-@login_required
 def generate_new_password(request):
     if request.method == 'POST':
         user_email = request.POST.get('email')

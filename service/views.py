@@ -1,10 +1,12 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.core.cache import cache
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView, DetailView
 
 from blog.models import Article
+from config import settings
 from service.forms import ClientForm, MailingForm, MessageForm
 from service.models import Client, Mailing, Message, Logs
 from service.services import start_1
@@ -20,7 +22,15 @@ class IndexView(TemplateView):
         context['count_mailing'] = Mailing.objects.all().count()
         context['count_activ_mailing'] = Mailing.objects.all().filter(status='создана').count()
         context['count_client'] = Client.objects.all().distinct().count()
-        context['random_article'] = Article.objects.all().order_by('?')[:3]
+        if settings.CACHE_ENABLED:
+            key = 'article_list'
+            article_list = cache.get(key)
+            if article_list is None:
+                article_list = Article.objects.all()
+                cache.set(key, article_list)
+            context['random_article'] = article_list.order_by('?')[:3]
+        else:
+            context['random_article'] = Article.objects.all().order_by('?')[:3]
         return context
 
 
@@ -42,7 +52,6 @@ class ClientCreateView(LoginRequiredMixin, CreateView):
     model = Client
     form_class = ClientForm
     #permission_required = 'service.add_client'
-    #fields = ('name', 'email', 'comment')
     success_url = reverse_lazy('service:client')
 
     def form_valid(self, form):
@@ -57,7 +66,6 @@ class ClientUpdateView(LoginRequiredMixin, UpdateView):
     model = Client
     form_class = ClientForm
     #permission_required = 'service.change_client'
-    #fields = ('name', 'email', 'comment')
     success_url = reverse_lazy('service:client')
 
     def get_object(self, queryset=None):
@@ -102,7 +110,6 @@ class MailingCreateView(LoginRequiredMixin, CreateView):
     model = Mailing
     form_class = MailingForm
     #permission_required = 'service.add_mailing'
-    #fields = ('time', 'frequency', 'status', 'message', 'client')
     success_url = reverse_lazy('service:mailing')
 
     def get_form_kwargs(self):
@@ -128,13 +135,16 @@ class MailingUpdateView(LoginRequiredMixin, UpdateView):
     model = Mailing
     form_class = MailingForm
     #permission_required = 'service.change_mailing'
-    #fields = ('time', 'frequency', 'status', 'message', 'client')
     success_url = reverse_lazy('service:mailing')
+
+    def get_form_kwargs(self):
+        kwargs = super(MailingUpdateView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user  # Передаем текущего пользователя в форму
+        return kwargs
 
     def form_valid(self, form):
         self.object = form.save()
         self.object.creator = self.request.user
-        #send_order_email(obj)
         start_1(self.object)
         return super().form_valid(form)
 
@@ -183,9 +193,9 @@ class MessageDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView)
     success_url = reverse_lazy('service:message')
 
 
-class LogsListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+class LogsListView(LoginRequiredMixin, ListView):
     model = Logs
-    permission_required = 'service.view_logs'
+    #permission_required = 'service.view_logs'
     extra_context = {
         'title': 'Отчеты о проведенных рассылка'
     }

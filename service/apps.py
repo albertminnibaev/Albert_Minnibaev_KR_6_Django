@@ -11,13 +11,3 @@ class ServiceConfig(AppConfig):
     def ready(self):
         from service import services
         services.start()
-
-
-# class RoomConfig(AppConfig):
-#     default_auto_field = 'django.db.models.BigAutoField'
-#     name = 'room'
-#
-#     def ready(self):
-#         from service import updater
-#         updater.start()
-
