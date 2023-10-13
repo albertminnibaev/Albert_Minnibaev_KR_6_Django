@@ -11,10 +11,12 @@
                 <div class="card-body">
                     <form method="post">
                         {% csrf_token %}
+                        {% if not user.is_staff or user.is_superuser %}
                         <p>Действительно хотитете удалить рассылку {{ object.time }}?</p>
                         <button type="submit" class="btn btn-outline-danger">
                             подтведить
                         </button>
+                        {% endif %}
                         <a class="btn btn-outline-warning"
                            href="{% url 'service:mailing' %}">Отмена</a>
                     </form>

@@ -16,10 +16,8 @@
                 <p class="card-text">Статус: {{ object.status }}</p>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-groop">
-                        {% if not user.is_staff or user.is_superuser %}
                         <a href="{% url 'service:mailing_update' object.pk %}"
                            class="btn btn-sm btn-outline-warning">редактирование</a>
-                        {% endif %}
                         <a href="{% url 'service:mailing_edit' object.pk %}"
                            class="btn btn-sm btn-outline-success">просмотр</a>
                         {% if not user.is_staff or user.is_superuser %}
@@ -29,17 +27,17 @@
                     </div>
                 </div><br>
                 <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-groop">
-                         {% if user.is_staff or user.is_superuser %}
-                         {% if object.status == 'создана' %}
-                         <a href="{% url 'service:toggle_activity' object.pk %}"
-                           class="btn btn-sm btn-outline-warning">Установить статус "завершена"</a>
-                         {% else %}
-                         <a href="{% url 'service:toggle_activity' object.pk %}"
-                           class="btn btn-sm btn-outline-success">Установить статус "создана"</a>
-                         {% endif %}
-                         {% endif %}
-                    </div>
+<!--                    <div class="btn-groop">-->
+<!--                         {% if user.is_staff or user.is_superuser %}-->
+<!--                         {% if object.status == 'создана' %}-->
+<!--                         <a href="{% url 'service:toggle_activity' object.pk %}"-->
+<!--                           class="btn btn-sm btn-outline-warning">Установить статус "завершена"</a>-->
+<!--                         {% else %}-->
+<!--                         <a href="{% url 'service:toggle_activity' object.pk %}"-->
+<!--                           class="btn btn-sm btn-outline-success">Установить статус "создана"</a>-->
+<!--                         {% endif %}-->
+<!--                         {% endif %}-->
+<!--                    </div>-->
                 </div>
             </div>
         </div>

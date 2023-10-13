@@ -31,6 +31,17 @@ class MailingForm(StyleFromMixin, forms.ModelForm):
         exclude = ('creator',)
 
 
+class MailingFormStaff(StyleFromMixin, forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None) # Извлекаем пользователя из аргументов
+        super(MailingFormStaff, self).__init__(*args, **kwargs)
+
+    class Meta:
+        model = Mailing
+        fields = ('status',)
+
+
 class MessageForm(StyleFromMixin, forms.ModelForm):
 
     class Meta:

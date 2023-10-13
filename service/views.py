@@ -7,7 +7,7 @@ from django.views.generic import TemplateView, ListView, CreateView, UpdateView,
 
 from blog.models import Article
 from config import settings
-from service.forms import ClientForm, MailingForm, MessageForm
+from service.forms import ClientForm, MailingForm, MessageForm, MailingFormStaff
 from service.models import Client, Mailing, Message, Logs
 from service.services import start_1
 from services import send_order_email
@@ -108,7 +108,7 @@ class MailingListView(LoginRequiredMixin, ListView):
 
 class MailingCreateView(LoginRequiredMixin, CreateView):
     model = Mailing
-    form_class = MailingForm
+    #form_class = MailingForm
     #permission_required = 'service.add_mailing'
     success_url = reverse_lazy('service:mailing')
 
@@ -117,12 +117,6 @@ class MailingCreateView(LoginRequiredMixin, CreateView):
         kwargs['user'] = self.request.user  # Передаем текущего пользователя в форму
         return kwargs
 
-    def get_object(self, queryset=None):
-        self.object = super().get_object(queryset)
-        if self.object.creator != self.request.user:
-            raise Http404
-        return self.object
-
     def form_valid(self, form):
         self.object = form.save()
         self.object.creator = self.request.user
@@ -130,10 +124,17 @@ class MailingCreateView(LoginRequiredMixin, CreateView):
         start_1(self.object)
         return super().form_valid(form)
 
+    def get_form_class(self):
+        if self.request.user.is_staff and not self.request.user.is_superuser:
+            # если пользователь is_staff и не суперюзер, то он не сможет создать рассылку
+            raise Http404
+        else:
+            return MailingForm
+
 
 class MailingUpdateView(LoginRequiredMixin, UpdateView):
     model = Mailing
-    form_class = MailingForm
+    #form_class = MailingForm
     #permission_required = 'service.change_mailing'
     success_url = reverse_lazy('service:mailing')
 
@@ -147,6 +148,20 @@ class MailingUpdateView(LoginRequiredMixin, UpdateView):
         self.object.creator = self.request.user
         start_1(self.object)
         return super().form_valid(form)
+
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        if self.object.creator != self.request.user and not (self.request.user.is_staff
+                                                             or self.request.user.is_superuser):
+            raise Http404
+        return self.object
+
+    def get_form_class(self):
+        if self.request.user.is_staff and not self.request.user.is_superuser:
+            # если пользователь is_staff и не суперюзер, то выводится форма только с полем статуса рассылки
+            return MailingFormStaff
+        else:
+            return MailingForm
 
 
 class MailingDetailView(LoginRequiredMixin, DetailView):
